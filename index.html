@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JUNKO — The 44 Days Of Hell</title>
+    <style>
+        /* ----- RESET & BASE ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            min-height: 100vh;
+            background: #0b0a0c;
+            font-family: 'Segoe UI', 'Arial', system-ui, sans-serif;
+            color: #e8e0d4;
+            line-height: 2;
+            scroll-behavior: smooth;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* ----- SCROLLBAR ----- */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a161f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #b8926c;
+            border-radius: 10px;
+        }
+
+        /* ----- CONTAINER (Book Style) — FULL WIDTH FILL ----- */
+        .book {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 2rem 2rem 4rem;
+            background: linear-gradient(145deg, #12101a 0%, #1e1a26 100%);
+            box-shadow: 0 0 60px rgba(0,0,0,0.9), inset 0 0 80px rgba(40, 25, 10, 0.3);
+            border-left: none;
+            border-right: none;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* ----- INNER WRAPPER (for readability) ----- */
+        .book-inner {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 0 0.5rem;
+        }
+
+        /* ----- PAGE DIVIDER ----- */
+        .page-divider {
+            text-align: center;
+            font-size: 2.8rem;
+            letter-spacing: 12px;
+            color: #6b4f3a;
+            margin: 4rem 0 3rem;
+            opacity: 0.5;
+            user-select: none;
+        }
+
+        /* ----- CHAPTER STYLING ----- */
+        .chapter {
+            margin-bottom: 4.5rem;
+            padding: 0 0.5rem;
+            border-bottom: 1px dashed #3b2e24;
+            padding-bottom: 3.5rem;
+        }
+
+        .chapter:last-of-type {
+            border-bottom: none;
+        }
+
+        .chapter-number {
+            display: inline-block;
+            font-size: 1.6rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #b8926c;
+            background: #1e1822;
+            padding: 0.4rem 1.8rem;
+            border-radius: 30px;
+            margin-bottom: 1.2rem;
+            border: 1px solid #3f2f22;
+        }
+
+        .chapter-title {
+            font-size: 4.2rem;
+            font-weight: 700;
+            color: #f0e2d0;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 10px rgba(180, 120, 70, 0.15);
+        }
+
+        .chapter-sub {
+            color: #b4916e;
+            font-style: italic;
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            border-left: 4px solid #7a5d44;
+            padding-left: 1.5rem;
+        }
+
+        /* ----- PARAGRAPHS ----- */
+        p {
+            margin-bottom: 1.8rem;
+            font-size: 2.3rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            color: #ddd6cc;
+        }
+
+        .highlight {
+            color: #dbb594;
+            font-weight: 500;
+        }
+
+        .brutal {
+            color: #c77d5a;
+            font-weight: 600;
+        }
+
+        .soft {
+            color: #b8a394;
+            font-style: italic;
+        }
+
+        /* ----- QUOTE / PLEA ----- */
+        .plea {
+            background: #1d151f;
+            border-left: 6px solid #a86f4b;
+            padding: 2.5rem 3rem;
+            margin: 2.5rem 0;
+            border-radius: 0 20px 20px 0;
+            font-size: 2.5rem;
+            font-style: italic;
+            color: #f0dac8;
+            box-shadow: inset 0 0 30px rgba(80, 40, 20, 0.3);
+        }
+
+        .plea span {
+            display: block;
+            margin-top: 0.8rem;
+            font-size: 1.8rem;
+            color: #a6856a;
+            text-align: right;
+            font-style: normal;
+        }
+
+        /* ----- FINAL PAGE (IMAGE) ----- */
+        .image-page {
+            margin-top: 4rem;
+            padding: 3rem 1rem 5rem;
+            background: #0d0b10;
+            border-radius: 30px 30px 10px 10px;
+            border: 1px solid #3a2c20;
+            text-align: center;
+            box-shadow: inset 0 0 80px rgba(0,0,0,0.8);
+        }
+
+        .image-page h2 {
+            font-size: 3.8rem;
+            color: #e0cfbb;
+            margin-bottom: 1.5rem;
+            letter-spacing: 6px;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+
+        .image-frame {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            border: 2px solid #5e4636;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 60px rgba(0,0,0,0.9), 0 0 40px rgba(120, 70, 30, 0.2);
+            background: #1a1418;
+            aspect-ratio: 3 / 4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-caption {
+            margin-top: 2rem;
+            font-size: 2rem;
+            color: #9a8776;
+            letter-spacing: 3px;
+            border-top: 1px solid #3f3024;
+            padding-top: 1.8rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .image-caption .year {
+            color: #b58d6a;
+            font-weight: 600;
+        }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 600px) {
+            .book {
+                padding: 1.5rem 1.2rem 3rem;
+            }
+            .chapter-title {
+                font-size: 3.2rem;
+            }
+            .chapter-sub {
+                font-size: 1.8rem;
+            }
+            p {
+                font-size: 2rem;
+            }
+            .plea {
+                font-size: 2rem;
+                padding: 1.5rem 2rem;
+            }
+            .plea span {
+                font-size: 1.5rem;
+            }
+            .chapter-number {
+                font-size: 1.2rem;
+            }
+            .image-frame {
+                max-width: 100%;
+                aspect-ratio: 3 / 4;
+            }
+            .image-page h2 {
+                font-size: 2.8rem;
+            }
+            .image-caption {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="book">
+    <div class="book-inner">
+
+        <!-- ============================== -->
+        <!--          TITLE PAGE            -->
+        <!-- ============================== -->
+        <div style="text-align: center; padding: 4rem 0 3rem;">
+            <div style="font-size: 1.8rem; letter-spacing: 8px; color: #7a624a; text-transform: uppercase; margin-bottom: 0.5rem;">A True Story</div>
+            <h1 style="font-size: 7rem; font-weight: 800; color: #eddccb; text-shadow: 0 4px 30px rgba(150,90,40,0.3); letter-spacing: -2px; line-height: 1.1;">
+                JUNKO
+            </h1>
+            <div style="font-size: 3.5rem; color: #b28b6b; margin-top: 0.2rem; font-weight: 300;">The 44 Days Of Hell</div>
+            <div style="width: 80px; height: 2px; background: #6b4f3a; margin: 2rem auto;"></div>
+            <div style="color: #8a7360; font-size: 1.6rem; letter-spacing: 3px;">1988 — 1989</div>
+            <div style="color: #5f4c3b; font-size: 2rem; margin-top: 1.2rem; letter-spacing: 2px;">— <i>Rewritten by Rishabh Kumar Yadav</i> —</div>
+
+        </div>
+       
+        <div class="page-divider">✦ ✦ ✦</div>
+
+        <!-- ============================== -->
+        <!--          CHAPTER 1             -->
+        <!-- ============================== -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 1</div>
+            <div class="chapter-title">The Girl With Dreams</div>
+            <div class="chapter-sub">Misato, Saitama, Japan — 1988</div>
+            <p>Subah ki dhoop thi. Ek ladki cycle par ja rahi thi — hawa mein baal bikhar rahe the, Aur face par ek alag si chamak thi.</p>
+            <p>Woh <span class="highlight">Junko</span> thi. ek ladki jiska dream tha — singer banne ka, Woh apne friend circle ki favourite girl thi. wo dekhne mein behad khubshurat thi. Phir ek din <span class="highlight">Miyano</span> naam ka ladka usko propose karta hai but <span class="highlight">Junko</span> usko accept nahi karti hai aur <span class="highlight">Miyano</span> isko bardaast nahi kar sakta tha.</p>
+            <p><span class="highlight">Junko</span> part time job karti thi apne graduation trip ke liye. Wo apne mammy-papa, bade aur chhote bhai ke sath rahti thi. uske bhai usse tease karte the, aur woh unse nakhre karti thi. Ek adorable ladki. Ek cute si family. Ek cute si shaam.</p>
+            <p style="color: #aa8b74; font-style: italic; font-size: 2.5rem;">Lekin 25 November 1988 — woh shaam cute nahi thi. <span class="highlight">Junko</span> ko kidnap karne wale 4 ladke. Jo <span class="highlight">Ogura</span>, <span class="highlight">Minato</span>, <span class="highlight">Yasushi</span>, <span class="highlight">Miyano</span> wahi <b>Miyano</b> jisne <b>Junko</b> ko propose kiya tha. <span class="highlight">Miyano</span> Japani maafiya jise <i>Yakuza</i> bhi kahte hai isse mila hua tha aur iss gang ke liye kaam karta tha. <span class="highlight">Junko</span> ko <span class="highlight">Miyano</span> ke baare mein ye sab nahi pata tha.</p>
+        </div>
+
+        <!-- ============================== -->
+        <!--          CHAPTER 2             -->
+        <!-- ============================== -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 2</div>
+            <div class="chapter-title">The Trap</div>
+            <div class="chapter-sub">8:30 PM — The last ordinary moment</div>
+            <p>Raat ke 8:30 baj rahe the. Junko ne apni shift khatam ki thi. Cycle par baithi — ghar ja rahi thi. Thandi hawa thi. Andhera tha. Par woh darti nahi thi kyunki woh apne city ko jaanti thi.</p>
+            <p>Par woh nahi jaanti thi ki <span class="brutal">Miyano</span> aur <span class="brutal">Minato</span> usko ghoor rahe the.</p>
+            <p>Miyano ne Minato ko order diya — <em>"Jaa, use cycle se gira."</em></p>
+            <p>Minato bhaga aur usko Dhakka de diya. Junko gir gayi. Uske ghutne chhil gaye. Cycle kharab ho gayi. Woh darr gayi.</p>
+            <p>Tabhi Miyano aaya — <em>"Arey, tum theek ho? Main tumhe ghar chhod deta hoon."</em></p>
+            <p>Awaaz mein itna pyaar. Chehra mein itna bholapan. Junko ne bharosa kiya. <span class="brutal">Woh uski sabse badi galati thi.</span></p>
+        </div>
+
+        <!-- ============================== -->
+        <!--          CHAPTER 3             -->
+        <!-- ============================== -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 3</div>
+            <div class="chapter-title">The First Scream</div>
+            <div class="chapter-sub">Warehouse · Hotel · 3 AM Park</div>
+            <p>Miyano use ek <span class="brutal">warehouse</span> mein le gaya. Wahan usne <span class="highlight">Junko</span> ka <span class="brutal">rape</span> kiya. <span class="highlight">Junko</span> ne chillaya. Koi nahi aaya.</p>
+            <p>Phir use ek hotel mein le gaya. Wahan bhi uska <span class="brutal">rape</span> kiya. Uske baad <span class="highlight">Miyano</span> ne apne doston ko phone kiya — <em>"Bhai, maza aa gaya. Ab tum log bhi aao."</em></p>
+            <p>Phir Raat ke 3 baje, <span class="highlight">Miyano</span> <span class="highlight">Junko</span> ko Park mein le gaya jaha baaki 3 ladke wait kar rahe the. Unhone uska notebook dekha jisme <span class="highlight">Junko</span> ka address tha. Unhone kaha — <em>"Hum Yakuza hain. Agar police ko bataya, toh teri maa, baap, bhai — sab ko maar denge."</em></p>
+            <p><span class="highlight">Junko</span> ki rooh kaanp gayi wo darr gayi aur ladko ne use kaaboo mein kar liya aur le gaye.</p>
+        </div>
+
+        <!-- ============================== -->
+        <!--          CHAPTER 4             -->
+        <!-- ============================== -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 4</div>
+            <div class="chapter-title">The Cage</div>
+            <div class="chapter-sub">Minato's house — 2-storey hell</div>
+            <p>Woh use le gaye — <span class="brutal">Minato</span> ke ghar. jaha wo Upar ek room mein rahte the.</p>
+            <p>27 November ko <span class="highlight">Junko</span> ke mammy-papa ne report darj karayi, toh <span class="highlight">Miyano</span> ne <span class="highlight">Junko</span> ko majboor kiya ki wo apne mammy-papa ke paas phone kare aur kahe ki woh bhaag gayi hai aur apne friend ke sath rah rahi hai aur woh safe hai.</p>
+            <p><span class="highlight">Minato</span> ke maa-baap neechay rehte the. Unhe pata tha ki upar kya ho raha hai. Unhone police ko call nahi kiya. Kyunki? Unka beta <span class="highlight">Minato</span> unko maarta tha. Aur <span class="highlight">Yakuza</span> ka dar tha.</p>
+        </div>
+
+        <!-- ============================== -->
+        <!--          CHAPTER 5             -->
+        <!-- ============================== -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 5</div>
+            <div class="chapter-title">The First Week</div>
+            <div class="chapter-sub">22 — 28 November 1988</div>
+            <p><span class="brutal">Day 1:</span> Sabne mil kar <span class="highlight">Junko</span> ke Kapde faad diye. usko <span class="brutal">Nanga</span> dance karwaya. aur <span class="brutal">Masturbate</span> karne ko majboor kiya. aur phir sabne mil kar <span class="highlight">Junko</span> ka <span class="brutal">rape</span> karna shuru kiya ek ke baad ek.</p>
+            <p><span class="brutal">Day 2:</span> <span class="highlight">Junko</span> ko <span class="brutal">Cigarette</span> se jala rahe the — haath, pair, pet, face sab jagah.</p>
+            <p><span class="brutal">Day 3:</span> Wo log <span class="highlight">Junko</span> ko <span class="brutal">Bhookha</span> rakhte the. usko kewal doodh peene ko dete the aur usko khudka hi <span class="brutal">urine(Peshab) </span> peene ko majboor karte the.</p>
+            <p><span class="brutal">Day 4:</span> Uski <span class="brutal">Vagina(Private part)</span> mein lohe ki rod aur plastic ki bottle daalte the aur jalti hui machis.</p>
+            <p><span class="brutal">Day 5:</span> uske pet par lohe ki ball se marte the. Naak mein itna khoon bhara ki woh sirf <span class="brutal">mooh se saans</span> le paati.</p>
+            <p><span class="brutal">Day 6:</span> Uske Haath chhat se bandh kar <span class="brutal">punching bag</span> banaya. <span class="highlight">Junko</span> ke chehre ko Concrete floor par rakh kar uspe koodate the.</p>
+            <p><span class="brutal">Day 7:</span> Usne socha — <em>"Aaj maut aa jaaye toh achha hai."</em> Par maut nahi aayi. Sirf woh 4 ladke aaye.</p>
+        </div>
+
+        <!-- ============================== -->
+        <!--          CHAPTER 6             -->
+        <!-- ============================== -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 6</div>
+            <div class="chapter-title">The Parade of Monsters</div>
+            <div class="chapter-sub">Day 8 — 20 · 100+ men · 400+ rapes</div>
+            <p>Agle 40 dino tak <span class="highlight">Junko</span> ke sath daily rape hota tha, <span class="highlight">Miyano</span> ne doston ko bulana shuru kiya. total 100 se bhi jyada alag-alag logo ne <span class="highlight">500 baar se bhi jyada </span> <span class="highlight">Junko</span> ke sath rape kiya. ek baar to <span class="brutal">12 alag-alag logo</span> ne ek hi din mein rape kiya.</p>
+            <p><span class="brutal">Day 11:</span> <span class="highlight">Junko</span> ko lohe ki chad se peeta. Anus mein patakhe daal kar jalaya. uske Nakhun tod diye. Vagina(Private part) mein cigarette daali. Sardi mein balcony par sone ko majboor kiya.</p>
+            <p><span class="brutal">Day 15:</span> Usne ek baar bathroom jaane ka bahana banaya. Khidki se neighbour ko aawaaz di. Neighbour ne police call ki. Police aayi. Ghar ke andar dekha. Sunaa. Aur chali gayi. <em>"Kuch nahi hai."</em> Woh 4 ladke hasne lage.</p>
+            <p><span class="brutal">Day 20:</span> <span class="highlight">Miyano</span> uske pair ko lighter se jala raha tha. <span class="highlight">Junko</span> chal nahi paa rahi thi. uske chehra par garam mombatti tapkaya. Cigarette lighter se palkein jalayi. uske Breast mein sui daaldi. uske left nipple ko plier se kaat diya. Vagina(Private part) mein garam bulb daala, Kainchi daali jiske wajah se vagina(Private part) se bahut jyada khoon baha bechari thik se Peshaab nahi kar paa rahi thi. ek baar toh Bathroom jaane mein 1 ghanta lagta tha woh reng kar jaati thi. <span class="highlight">Junko</span> ko itna maarte the ki uske Kaan ke parde permanently damaged ho gaye the. uska <span class="brutal">Brain shrink</span> ho gaya.</p>
+        </div>
+
+        <!-- ============================== -->
+        <!--          CHAPTER 7             -->
+        <!-- ============================== -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 7</div>
+            <div class="chapter-title">The Breaking Point</div>
+            <div class="chapter-sub">Day 21 — 35 · The rotting body</div>
+            <p>Sab logo ne <span class="highlight">Junko</span> ko itna torture kiya ki uska face bahut swell ho gaya tha aur Uske body se <span class="brutal">sadne ki smell</span> aane lagi — infection, pus, rotting smell. isi wajah se woh log ab <span class="highlight">Junko</span> se <span class="brutal">bore</span> ho gaye the.</p>
+            <p>Unhone ek 19 saal ki aurat ko kidnap kiya — gangrape kiya — chhod diya. Kyunki Junko ab unhe <span class="brutal">ghinauni</span> lag rahi thi.</p>
+            <p><span class="highlight">Junko</span> ne ek din kaha — <em>"Mujhe maar do aur iss sab se chhutkara paao."</em> lekin Woh log hanse. Usne dubara kaha — <em>"Please... mujhe maar daalo..."</em> Unhone uska mooh tape se bandh diya.</p>
+        </div>
+
+        <!-- ============================== -->
+        <!--          CHAPTER 8             -->
+        <!-- ============================== -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 8</div>
+            <div class="chapter-title">The Longest Night</div>
+            <div class="chapter-sub">1 January 1989 — New Year's Eve</div>
+            <p>Andheri raat, Akela room. <span class="highlight">Junko</span> zameen par padi thi — hil nahi paati. Uske body mein itna dard tha ki woh <span class="soft">ro</span> bhi nahi sakti thi.</p>
+            <p>Usne aankhein band ki — aur socha ki <em>"Naya saal. Kya badlega?"</em> Kuch nahi badla. Sirf uski saans aur dheemi hui.</p>
+            <p>Woh jaanti thi ki <span class="brutal">ab bas kuch din aur.</span></p>
+        </div>
+
+        <!-- ============================== -->
+        <!--          CHAPTER 9             -->
+        <!-- ============================== -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 9</div>
+            <div class="chapter-title">The Final Day</div>
+            <div class="chapter-sub">4 January 1989 — 6 AM</div>
+            <p>Subah. Woh 4 log <span class="highlight">Mahjong</span> khel rahe the. aur <span class="highlight">Miyano</span> game haar gaya. aur apna saara Gussa <span class="highlight">Junko</span> par nikaalta hai, usne Lohe ka rod uthaya. Aur <span class="highlight">Junko</span> ki <span class="brutal">dard se bhari body</span> par barbar maara.</p>
+            <p>Uske mooh aur naak se khoon bahane laga. Unhone wapas garam mombatti uske face aur aankhon par rakhi Lighter se <span class="brutal">Aag lagayi.</span></p>
+            <p><span class="highlight">Junko</span> 2 ghante tak <span class="brutal">jalati</span> rahi. Woh 2 ghante tak <span class="brutal">dekhte</span> rahe. Uske cheekhein uss andheri raat mein ghul gayi.</p>
+            <p>Phir woh chal nahi rahi thi. Unhone socha — <em>"Mar gayi?"</em> Nahi. Woh <span class="soft">coma</span> mein thi. Phir bhi unhonne Lohe ki ball pet par giraya. uske body se khoon <span class="brutal">bahne</span> laga to usne kapde se chhupa liya, phir Unhone plastic bags haath mein daale aur <span class="brutal">phir se</span> usko bahut maara. wo bheekh maang rahi thi ki</p>
+            <div class="plea">
+                "Mujhe maar do... please..."
+                <span>— Junko, 40th day</span>
+            </div>
+            <p><span class="brutal">2 ghante baad — Junko ki saans ruk gayi.</span> Usne apni aakhri saans <span class="soft">akeli</span> li. Koi nahi tha. Sirf woh 4 the — jo <span class="brutal">dekhte</span> rahe.</p>
+        </div>
+
+        <!-- ============================== -->
+        <!--          CHAPTER 10            -->
+        <!-- ============================== -->
+        <div class="chapter">
+            <div class="chapter-number">Chapter 10</div>
+            <div class="chapter-title">The Disposal</div>
+            <div class="chapter-sub">Concrete · Drum · VHS tape</div>
+            <p><span class="highlight">Junko</span> ki Body ko blanket mein lapet kar travel bag mein daal diya gaya ek bade se drum ke Andar aur <span class="highlight">Tonbo</span> (Dragonfly) ka last episode ki Audio tape rakh diya Kyunki Junko ki favarite show tha usne kaha tha ki woh last episode dekhna bhool gayi thi.</p>
+            <p><span class="highlight">Miyano</span> ne Drum ko Koto, Tokyo mein ek cement truck mein phenk diya.</p>
+        </div>
+
+        <!-- ============================== -->
+        <!--          CHAPTER 12 — FINAL    -->
+        <!-- ============================== -->
+        <div class="chapter" style="border-bottom: none;">
+            <div class="chapter-number">Final Chapter</div>
+            <div class="chapter-title">The Legacy</div>
+            <div class="chapter-sub">Aaj bhi — woh 4 hanste hain.</div>
+            <p>Aaj bhi woh 4 log hanste hain. unko kuch nahi hua sirf 6 se 7 saal ki jail hui aur ab wo free hai.</p>
+            <p><span class="highlight">Aur Junko...💔</p>
+
+            <!-- ============================== -->
+            <!--    AGE — 17 — ONLY HERE        -->
+            <!-- ============================== -->
+            <div style="text-align: center; margin-top: 4rem; padding: 3rem 0; border-top: 2px solid #3f2f22; border-bottom: 2px solid #3f2f22;">
+                <p style="font-size: 3rem; font-weight: 800; color: #edd2bb; letter-spacing: 3px; margin-bottom: 0.2rem;">Iss story ki sabse Saddest part Junko sirf 17 saal Japan ki ek High School ki ek Student thi. Aur wo 4 ladke isi school se pass out the.</p>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!--   LAST PAGE — IMAGE PAGE (dummy path)                         -->
+        <!--   Tum yahan apni image ka path daal dena.                     -->
+        <!-- ============================================================ -->
+        <div class="image-page" id="image-page">
+            <h2>✦ JUNKO ✦</h2>
+            <div class="image-frame">
+                <!-- 🔽 YAHAN APNI IMAGE KA PATH DAALO 🔽 -->
+                <img src="Junko.jpg" alt="Junko Furuta — A life remembered">
+                <!-- 🔼 YAHAN APNI IMAGE KA PATH DAALO 🔼 -->
+            </div>
+            <div class="image-caption">
+                <span style="font-size: 2rem; color: #6f5d4c;">A smile that outlived the monsters.</span>
+            </div>
+        </div>
+
+        <div class="plea">
+            "Kuch Reality Horror Movies Se Kahi Jyada Darawani Hoti Hai"
+                <span>⁓ Rishabh Kumar Yadav</span>
+            </div>
+    </div>
+    <!-- ====== END BOOK-INNER ====== -->
+</div>
+<!-- ====== END BOOK ====== -->
+
+</body>
+</html>
