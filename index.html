@@ -2,8 +2,8 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JUNKO — The 44 Days Of Hell</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Junko — The 44 Days Of Hell</title>
     <style>
         /* ----- RESET & BASE ----- */
         * {
@@ -23,6 +23,7 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
+            overflow-x: hidden;
         }
 
         /* ----- SCROLLBAR ----- */
@@ -42,7 +43,7 @@
             width: 100%;
             max-width: 100%;
             margin: 0;
-            padding: 2rem 2rem 4rem;
+            padding: 2rem 1.5rem 4rem;
             background: linear-gradient(145deg, #12101a 0%, #1e1a26 100%);
             box-shadow: 0 0 60px rgba(0,0,0,0.9), inset 0 0 80px rgba(40, 25, 10, 0.3);
             border-left: none;
@@ -55,7 +56,7 @@
         .book-inner {
             max-width: 950px;
             margin: 0 auto;
-            padding: 0 0.5rem;
+            padding: 0 0.3rem;
         }
 
         /* ----- PAGE DIVIDER ----- */
@@ -72,7 +73,7 @@
         /* ----- CHAPTER STYLING ----- */
         .chapter {
             margin-bottom: 4.5rem;
-            padding: 0 0.5rem;
+            padding: 0 0.3rem;
             border-bottom: 1px dashed #3b2e24;
             padding-bottom: 3.5rem;
         }
@@ -101,6 +102,7 @@
             margin-bottom: 1rem;
             letter-spacing: -0.5px;
             text-shadow: 0 2px 10px rgba(180, 120, 70, 0.15);
+            word-wrap: break-word;
         }
 
         .chapter-sub {
@@ -119,6 +121,7 @@
             font-weight: 300;
             letter-spacing: 0.5px;
             color: #ddd6cc;
+            word-wrap: break-word;
         }
 
         .highlight {
@@ -147,6 +150,7 @@
             font-style: italic;
             color: #f0dac8;
             box-shadow: inset 0 0 30px rgba(80, 40, 20, 0.3);
+            word-wrap: break-word;
         }
 
         .plea span {
@@ -176,6 +180,7 @@
             letter-spacing: 6px;
             font-weight: 300;
             text-transform: uppercase;
+            word-wrap: break-word;
         }
 
         .image-frame {
@@ -210,6 +215,7 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            word-wrap: break-word;
         }
 
         .image-caption .year {
@@ -217,39 +223,176 @@
             font-weight: 600;
         }
 
-        /* ----- RESPONSIVE ----- */
-        @media (max-width: 600px) {
+        /* ============================================================ */
+        /*              📱 RESPONSIVE — PHONE FIXES 📱                   */
+        /* ============================================================ */
+        @media (max-width: 768px) {
             .book {
-                padding: 1.5rem 1.2rem 3rem;
+                padding: 1.2rem 1rem 2.5rem;
             }
-            .chapter-title {
-                font-size: 3.2rem;
+
+            .book-inner {
+                padding: 0;
             }
-            .chapter-sub {
-                font-size: 1.8rem;
+
+            .chapter {
+                margin-bottom: 2.5rem;
+                padding-bottom: 2rem;
+                padding: 0;
             }
-            p {
-                font-size: 2rem;
-            }
-            .plea {
-                font-size: 2rem;
-                padding: 1.5rem 2rem;
-            }
-            .plea span {
-                font-size: 1.7rem;
-            }
+
             .chapter-number {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
+                padding: 0.3rem 1.2rem;
+                letter-spacing: 2px;
             }
+
+            .chapter-title {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+
+            .chapter-sub {
+                font-size: 1.4rem;
+                padding-left: 1rem;
+                margin-bottom: 1.2rem;
+            }
+
+            p {
+                font-size: 1.5rem;
+                line-height: 1.8;
+                margin-bottom: 1.2rem;
+            }
+
+            /* Special fix for the italic paragraph in Chapter 1 */
+            .chapter:first-child p:last-of-type {
+                font-size: 1.6rem !important;
+            }
+
+            .plea {
+                font-size: 1.4rem;
+                padding: 1.2rem 1.5rem;
+                margin: 1.5rem 0;
+            }
+
+            .plea span {
+                font-size: 1.2rem;
+                margin-top: 0.6rem;
+            }
+
+            .page-divider {
+                font-size: 1.8rem;
+                margin: 2rem 0 1.8rem;
+                letter-spacing: 6px;
+            }
+
+            .image-page {
+                padding: 1.8rem 0.8rem 2.5rem;
+                margin-top: 2rem;
+            }
+
+            .image-page h2 {
+                font-size: 2.2rem;
+                letter-spacing: 3px;
+            }
+
             .image-frame {
                 max-width: 100%;
                 aspect-ratio: 3 / 4;
+                border-radius: 16px;
             }
-            .image-page h2 {
-                font-size: 2.8rem;
-            }
+
             .image-caption {
-                font-size: 1.6rem;
+                font-size: 1.3rem;
+                letter-spacing: 1px;
+                padding-top: 1rem;
+                margin-top: 1rem;
+            }
+
+            /* Title page */
+            .book-inner > div:first-child {
+                padding: 2rem 0 1.5rem !important;
+            }
+
+            .book-inner > div:first-child h1 {
+                font-size: 4rem !important;
+                line-height: 1.1 !important;
+            }
+
+            .book-inner > div:first-child div {
+                font-size: 1.3rem !important;
+            }
+
+            .book-inner > div:first-child .page-divider {
+                margin: 1.5rem 0;
+            }
+
+            /* Age section - FINAL CHAPTER */
+            .chapter:last-of-type > div:last-child {
+                padding: 1.5rem 0 !important;
+                margin-top: 2rem !important;
+            }
+
+            .chapter:last-of-type > div:last-child p {
+                font-size: 1.6rem !important;
+                line-height: 1.6 !important;
+            }
+
+            /* Final plea */
+            .plea:last-of-type {
+                font-size: 1.5rem !important;
+                padding: 1rem 1.2rem !important;
+            }
+
+            .plea:last-of-type span {
+                font-size: 1.2rem !important;
+            }
+
+            /* Hide scrollbar on phone */
+            ::-webkit-scrollbar {
+                width: 4px;
+            }
+        }
+
+        /* Small phones (below 400px) */
+        @media (max-width: 420px) {
+            .book {
+                padding: 0.8rem 0.6rem 1.5rem;
+            }
+
+            .chapter-title {
+                font-size: 1.7rem;
+            }
+
+            p {
+                font-size: 1.3rem;
+                line-height: 1.7;
+            }
+
+            .chapter-sub {
+                font-size: 1.2rem;
+            }
+
+            .plea {
+                font-size: 1.3rem;
+                padding: 0.8rem 1rem;
+            }
+
+            .book-inner > div:first-child h1 {
+                font-size: 3rem !important;
+            }
+
+            .chapter-number {
+                font-size: 0.9rem;
+                padding: 0.2rem 0.8rem;
+            }
+
+            .chapter:first-child p:last-of-type {
+                font-size: 1.3rem !important;
+            }
+
+            .chapter:last-of-type > div:last-child p {
+                font-size: 1.3rem !important;
             }
         }
     </style>
@@ -270,7 +413,7 @@
             <div style="font-size: 3.5rem; color: #b28b6b; margin-top: 0.2rem; font-weight: 300;">The 44 Days Of Hell</div>
             <div style="width: 80px; height: 2px; background: #6b4f3a; margin: 2rem auto;"></div>
             <div style="color: #8a7360; font-size: 1.6rem; letter-spacing: 3px;">1988 — 1989</div>
-            <div style="color: #5f4c3b; font-size: 2rem; margin-top: 1.2rem; letter-spacing: 2px;">— <i>Rewritten by Rishabh Kumar Yadav</i> —</div>
+            <div style="color: #5f4c3b; font-size: 1rem; margin-top: 1.2rem; letter-spacing: 2px;">— <i>Rewritten by Rishabh Kumar Yadav</i> —</div>
 
         </div>
        
@@ -286,7 +429,7 @@
             <p>Subah ki dhoop thi. Ek ladki cycle par ja rahi thi — hawa mein baal bikhar rahe the, Aur face par ek alag si chamak thi.</p>
             <p>Woh <span class="highlight">Junko</span> thi. ek ladki jiska dream tha — singer banne ka, Woh apne friend circle ki favourite girl thi. wo dekhne mein behad khubshurat thi. Phir ek din <span class="highlight">Miyano</span> naam ka ladka usko propose karta hai but <span class="highlight">Junko</span> usko accept nahi karti hai aur <span class="highlight">Miyano</span> isko bardaast nahi kar sakta tha.</p>
             <p><span class="highlight">Junko</span> part time job karti thi apne graduation trip ke liye. Wo apne mammy-papa, bade aur chhote bhai ke sath rahti thi. uske bhai usse tease karte the, aur woh unse nakhre karti thi. Ek adorable ladki. Ek cute si family. Ek cute si shaam.</p>
-            <p style="color: #aa8b74; font-style: italic; font-size: 2.5rem;">Lekin 25 November 1988 — woh shaam cute nahi thi. <span class="highlight">Junko</span> ko kidnap karne wale 4 ladke. Jo <span class="highlight">Ogura</span>, <span class="highlight">Minato</span>, <span class="highlight">Yasushi</span>, <span class="highlight">Miyano</span> wahi <b>Miyano</b> jisne <b>Junko</b> ko propose kiya tha. <span class="highlight">Miyano</span> Japani maafiya jise <i>Yakuza</i> bhi kahte hai isse mila hua tha aur iss gang ke liye kaam karta tha. <span class="highlight">Junko</span> ko <span class="highlight">Miyano</span> ke baare mein ye sab nahi pata tha.</p>
+            <p style="color: #aa8b74; font-style: italic; font-size: 1.2rem;">Lekin 25 November 1988 — woh shaam cute nahi thi. <span class="highlight">Junko</span> ko kidnap karne wale 4 ladke. Jo <span class="highlight">Ogura</span>, <span class="highlight">Minato</span>, <span class="highlight">Yasushi</span>, <span class="highlight">Miyano</span> wahi <b>Miyano</b> jisne <b>Junko</b> ko propose kiya tha. <span class="highlight">Miyano</span> Japani maafiya jise <i>Yakuza</i> bhi kahte hai isse mila hua tha aur iss gang ke liye kaam karta tha. <span class="highlight">Junko</span> ko <span class="highlight">Miyano</span> ke baare mein ye sab nahi pata tha.</p>
         </div>
 
         <!-- ============================== -->
@@ -425,7 +568,7 @@
             <!--    AGE — 17 — ONLY HERE        -->
             <!-- ============================== -->
             <div style="text-align: center; margin-top: 4rem; padding: 3rem 0; border-top: 2px solid #3f2f22; border-bottom: 2px solid #3f2f22;">
-                <p style="font-size: 3rem; font-weight: 800; color: #edd2bb; letter-spacing: 3px; margin-bottom: 0.2rem;">Iss story ki sabse Saddest part Junko sirf 17 saal Japan ki ek High School ki ek Student thi. Aur wo 4 ladke isi school se pass out the.</p>
+                <p style="font-size: 1rem; font-weight: 800; color: #edd2bb; letter-spacing: 3px; margin-bottom: 0.2rem;">Iss story ki sabse Saddest part Junko sirf 17 saal Japan ki ek High School ki ek Student thi. Aur wo 4 ladke isi school se pass out the.</p>
             </div>
         </div>
 
